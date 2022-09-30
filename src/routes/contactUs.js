@@ -3,15 +3,11 @@ const rules = require('../middleware/contactUsRules')
 const validation = require('../middleware/validation')
 const contactUsController = require('../controllers/contactUs')
 
-// Contact Us
-
-// Get
 contactUs.get('/', contactUsController.getDataContactUs)
+contactUs.post('/', ...rules, validation, contactUsController.createContactUs)
+contactUs.patch('/:id', ...rules, validation, contactUsController.editDataContactUs)
+contactUs.get('/:id', contactUsController.getDataContactUsById)
 
-// Post
-contactUs.post('/', contactUsController.createContactUs)
-
-// Delete
 contactUs.delete('/:id', contactUsController.deleteDataContactUs)
 
 module.exports = contactUs;
